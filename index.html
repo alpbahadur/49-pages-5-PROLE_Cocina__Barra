@@ -1,11 +1,535 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website</title>
+    <meta name="description" content="Contemporary Restaurant and Bar by Chef José Esteban Rivero in Santurce's Calle Cerra. Farm-to-table dining experience in Puerto Rico.">
+    <meta name="keywords" content="restaurant, Puerto Rico, Santurce, farm to table, Chef José Esteban Rivero, contemporary dining, Calle Cerra">
+    <meta property="og:title" content="PROLE Cocina & Barra">
+    <meta property="og:description" content="Contemporary Restaurant and Bar by Chef José Esteban Rivero in Santurce's Calle Cerra">
+    <meta property="og:image" content="./deepCheck/PROLE_Cocina__Barra/materials/image_2.png">
+    <title>PROLE Cocina & Barra | Contemporary Farm-to-Table Dining in Santurce</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: #1a1a1a;
+            background-color: #F7F7F7;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 200;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            color: #1a1a1a !important;
+        }
+
+        .nav-scrolled a {
+            color: #1a1a1a !important;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+        }
+
+        .btn-primary {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .btn-primary:hover {
+            background-color: white;
+            color: #1a1a1a;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid #1a1a1a;
+            color: #1a1a1a;
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .btn-secondary:hover {
+            background-color: #1a1a1a;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .image-hover {
+            overflow: hidden;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .image-hover:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-hover img {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .nav-scrolled .hamburger span {
+            background-color: #1a1a1a;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .desktop-nav {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Content will be added here -->
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-transparent text-white">
+        <div class="max-w-7xl mx-auto px-6 py-6">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img src="./deepCheck/PROLE_Cocina__Barra/materials/image_2.png" alt="PROLE Cocina & Barra" class="h-10 w-auto">
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="desktop-nav hidden md:flex items-center space-x-8">
+                    <a href="#story" class="hover:opacity-70 transition-opacity duration-300">Our Story</a>
+                    <a href="#menu" class="hover:opacity-70 transition-opacity duration-300">Menu</a>
+                    <a href="#farmers" class="hover:opacity-70 transition-opacity duration-300">Our Farmers</a>
+                    <a href="#gatherings" class="hover:opacity-70 transition-opacity duration-300">Gatherings</a>
+                    <a href="#contact" class="hover:opacity-70 transition-opacity duration-300">Contact</a>
+                </div>
+
+                <!-- Reservations Button -->
+                <div class="hidden md:block">
+                    <a href="tel:787-724-1550" class="btn-primary inline-block">Reservations</a>
+                </div>
+
+                <!-- Mobile Hamburger -->
+                <div class="hamburger md:hidden" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="absolute top-8 right-8 text-4xl cursor-pointer" id="closeMenu">&times;</div>
+        <a href="#story" class="text-2xl text-gray-800 hover:opacity-70 mobile-link">Our Story</a>
+        <a href="#menu" class="text-2xl text-gray-800 hover:opacity-70 mobile-link">Menu</a>
+        <a href="#farmers" class="text-2xl text-gray-800 hover:opacity-70 mobile-link">Our Farmers</a>
+        <a href="#gatherings" class="text-2xl text-gray-800 hover:opacity-70 mobile-link">Gatherings</a>
+        <a href="#contact" class="text-2xl text-gray-800 hover:opacity-70 mobile-link">Contact</a>
+        <a href="tel:787-724-1550" class="btn-secondary mt-4">Reservations</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen w-full overflow-hidden">
+        <!-- Background Image (Video placeholder) -->
+        <div class="absolute inset-0">
+            <img src="./deepCheck/PROLE_Cocina__Barra/materials/image_5.jpg" alt="Fresh Ingredients" class="w-full h-full object-cover">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative h-full flex flex-col justify-center items-center text-white text-center px-6">
+            <h1 class="text-5xl md:text-7xl font-light tracking-tight mb-6 fade-in-up">
+                Ingredientes. Comunidad. Cocina.
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-200 max-w-2xl fade-in-up" style="transition-delay: 0.2s;">
+                Contemporary farm-to-table dining in the heart of Santurce
+            </p>
+            <a href="tel:787-724-1550" class="btn-primary fade-in-up" style="transition-delay: 0.4s;">Make a Reservation</a>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="story" class="py-24 md:py-32 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="image-hover rounded-lg overflow-hidden">
+                    <img src="./deepCheck/PROLE_Cocina__Barra/materials/image_0.jpg" alt="PROLE Interior" class="w-full h-full object-cover">
+                </div>
+                <div class="fade-in-up">
+                    <h2 class="text-4xl md:text-5xl tracking-tight mb-6">Our Story</h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Founded in April 2019 by Chef José Esteban Rivero and his wife Sarah Santos, PROLE Cocina & Barra represents a dream born from passion, resilience, and a deep commitment to Puerto Rico.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        After Hurricane Maria, José and Sarah returned to their beloved island with a mission: to support local agriculture and create a gathering place that celebrates the finest ingredients Puerto Rico has to offer.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        With 11 years of training in Philadelphia and a degree from The Arts Institute of Philadelphia for Culinary Management, Chef José brings international expertise with a profound respect for local traditions. Sarah's background in marketing and PR with brands like Nicole Miller ensures every detail of your experience is thoughtfully crafted.
+                    </p>
+                    <div class="border-l-4 border-gray-300 pl-6 italic text-gray-700">
+                        "De la Finca a la Mesa" - From the Farm to the Table - isn't just our philosophy. It's our commitment to community, quality, and the future of Puerto Rican cuisine.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="py-24 md:py-32 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl tracking-tight mb-8 fade-in-up">Fresh. Seasonal. Local.</h2>
+            <p class="text-xl text-gray-600 mb-12 leading-relaxed fade-in-up">
+                Our menu changes every 2-3 days based on the freshest ingredients available from our trusted local farmers and producers. This dynamic approach ensures that every visit to PROLE is a unique culinary journey.
+            </p>
+            <div class="grid md:grid-cols-3 gap-12 mt-16">
+                <div class="fade-in-up">
+                    <div class="text-6xl mb-4">🌱</div>
+                    <h3 class="text-2xl mb-3 font-light">Farm-to-Table</h3>
+                    <p class="text-gray-600">Direct partnerships with local Puerto Rican farmers ensure the highest quality ingredients</p>
+                </div>
+                <div class="fade-in-up" style="transition-delay: 0.1s;">
+                    <div class="text-6xl mb-4">👨‍🍳</div>
+                    <h3 class="text-2xl mb-3 font-light">Chef-Driven</h3>
+                    <p class="text-gray-600">Internationally inspired dishes crafted with passion and culinary expertise</p>
+                </div>
+                <div class="fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="text-6xl mb-4">🍹</div>
+                    <h3 class="text-2xl mb-3 font-light">Creative Cocktails</h3>
+                    <p class="text-gray-600">Inventive cocktail menu featuring unique creations and local spirits</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Highlight Section -->
+    <section id="menu" class="py-24 md:py-32 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-4xl md:text-5xl tracking-tight mb-6">Experience PROLE</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Our menu is a reflection of what's fresh and available. Each dish tells the story of our island's bounty and Chef José's creative vision.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="image-hover rounded-lg overflow-hidden shadow-lg fade-in-up">
+                    <img src="./deepCheck/PROLE_Cocina__Barra/materials/image_3.jpg" alt="PROLE Dish" class="w-full h-80 object-cover">
+                </div>
+                <div class="image-hover rounded-lg overflow-hidden shadow-lg fade-in-up">
+                    <img src="./deepCheck/PROLE_Cocina__Barra/materials/image_6.jpg" alt="PROLE Dish" class="w-full h-80 object-cover">
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <p class="text-lg text-gray-600 mb-8">
+                    Our menu changes every few days. Call us to discover what's fresh today.
+                </p>
+                <a href="tel:787-724-1550" class="btn-secondary inline-block">View Current Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Farmers Section -->
+    <section id="farmers" class="py-24 md:py-32 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-4xl md:text-5xl tracking-tight mb-6">Our Farmers</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    The heart of PROLE beats with the rhythm of Puerto Rican agriculture. We're proud to partner with local farmers who share our commitment to quality and sustainability.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16 items-center mb-16">
+                <div class="fade-in-up order-2 md:order-1">
+                    <h3 class="text-3xl mb-4 font-light">Supporting Local Agriculture</h3>
+                    <p class="text-lg text-gray-600 mb-4 leading-relaxed">
+                        After Hurricane Maria, we witnessed the resilience of Puerto Rico's farming community. Our commitment to sourcing locally isn't just about freshness—it's about rebuilding and strengthening our island's food systems.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-4 leading-relaxed">
+                        Every plate that leaves our kitchen represents a partnership with dedicated farmers who work tirelessly to bring the best of Puerto Rico to your table.
+                    </p>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        From organic vegetables grown in the central mountains to fresh seafood from our coastal waters, we celebrate the diversity and quality of Puerto Rican agriculture.
+                    </p>
+                </div>
+                <div class="image-hover rounded-lg overflow-hidden shadow-lg fade-in-up order-1 md:order-2">
+                    <img src="./deepCheck/PROLE_Cocina__Barra/materials/image_1.jpg" alt="Local Ingredients" class="w-full h-96 object-cover">
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg p-8 md:p-12 shadow-lg fade-in-up">
+                <h3 class="text-2xl mb-6 font-light text-center">De la Finca a la Mesa</h3>
+                <p class="text-lg text-gray-600 text-center max-w-3xl mx-auto leading-relaxed">
+                    This isn't just a concept—it's our daily practice. We build relationships with our farmers, understand their growing practices, and let the seasons guide our menu. When you dine at PROLE, you're supporting a network of Puerto Rican families and contributing to the future of our island's agriculture.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gatherings Section -->
+    <section id="gatherings" class="py-24 md:py-32 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-4xl md:text-5xl tracking-tight mb-6">Private Gatherings</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    PROLE is designed to be a gathering place—a space where colleagues, friends, and family come together to share memorable moments around exceptional food.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="image-hover rounded-lg overflow-hidden shadow-lg fade-in-up">
+                    <img src="./deepCheck/PROLE_Cocina__Barra/materials/image_7.jpg" alt="Private Event Space" class="w-full h-80 object-cover">
+                </div>
+                <div class="image-hover rounded-lg overflow-hidden shadow-lg fade-in-up">
+                    <img src="./deepCheck/PROLE_Cocina__Barra/materials/image_8.jpg" alt="Private Event Setup" class="w-full h-80 object-cover">
+                </div>
+            </div>
+
+            <div class="text-center fade-in-up">
+                <div class="max-w-3xl mx-auto mb-8">
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Whether you're planning a corporate event, celebration, or intimate dinner party, our team will work with you to create a customized experience that reflects your vision.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Our space can accommodate various group sizes, and Chef José will craft a menu tailored to your occasion.
+                    </p>
+                </div>
+                <a href="mailto:prole@prolepr.com" class="btn-secondary inline-block">Inquire About Events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Preview Section -->
+    <section class="py-24 md:py-32 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="image-hover rounded-lg overflow-hidden shadow-lg fade-in-up">
+                    <img src="./deepCheck/PROLE_Cocina__Barra/materials/image_12.jpg" alt="PROLE Location" class="w-full h-96 object-cover">
+                </div>
+                <div class="fade-in-up">
+                    <h2 class="text-4xl md:text-5xl tracking-tight mb-6">Find Us in Santurce</h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Located in the vibrant Calle Cerra neighborhood of Santurce, PROLE is at the heart of San Juan's emerging arts and culture district.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Our location reflects our values—we're part of a community that celebrates creativity, authenticity, and the spirit of Puerto Rico.
+                    </p>
+                    <div class="space-y-3">
+                        <p class="text-lg"><strong>Address:</strong> Calle Cerra, Santurce, San Juan, Puerto Rico</p>
+                        <p class="text-lg"><strong>Phone:</strong> <a href="tel:787-724-1550" class="hover:underline">787-724-1550</a></p>
+                        <p class="text-lg"><strong>Email:</strong> <a href="mailto:prole@prolepr.com" class="hover:underline">prole@prolepr.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Footer Section -->
+    <footer id="contact" class="bg-gray-900 text-white py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <!-- Address & Map -->
+                <div class="fade-in-up">
+                    <h3 class="text-xl font-light mb-4 text-gray-300">Visit Us</h3>
+                    <p class="mb-2">Calle Cerra</p>
+                    <p class="mb-2">Santurce, San Juan</p>
+                    <p class="mb-4">Puerto Rico</p>
+                    <a href="https://maps.google.com/?q=Calle+Cerra+Santurce+San+Juan+Puerto+Rico" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        View on Map →
+                    </a>
+                </div>
+
+                <!-- Hours & Contact -->
+                <div class="fade-in-up">
+                    <h3 class="text-xl font-light mb-4 text-gray-300">Hours & Contact</h3>
+                    <p class="mb-2">Tuesday - Saturday</p>
+                    <p class="mb-4 text-gray-400">Dinner Service</p>
+                    <p class="mb-2">📞 <a href="tel:787-724-1550" class="hover:underline">787-724-1550</a></p>
+                    <p class="mb-2">✉️ <a href="mailto:prole@prolepr.com" class="hover:underline">prole@prolepr.com</a></p>
+                    <p class="mt-4 text-sm text-gray-400">Call for current hours and reservations</p>
+                </div>
+
+                <!-- Social & Gift Cards -->
+                <div class="fade-in-up">
+                    <h3 class="text-xl font-light mb-4 text-gray-300">Connect</h3>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="https://www.facebook.com/PROLEpr/" target="_blank" class="text-2xl hover:text-gray-400 transition-colors">📘</a>
+                        <a href="https://www.instagram.com/prolepr/" target="_blank" class="text-2xl hover:text-gray-400 transition-colors">📷</a>
+                    </div>
+                    <div class="mt-6">
+                        <a href="http://www.prolepr.com/" target="_blank" class="inline-block px-6 py-3 border border-white text-white hover:bg-white hover:text-gray-900 transition-all duration-300">
+                            Purchase Gift Card
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400">
+                <div class="mb-4">
+                    <img src="./deepCheck/PROLE_Cocina__Barra/materials/image_2.png" alt="PROLE" class="h-12 mx-auto opacity-75">
+                </div>
+                <p>&copy; 2025 PROLE Cocina & Barra. All rights reserved.</p>
+                <p class="text-sm mt-2">Crafted with passion in Santurce, Puerto Rico</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Animations and Interactions -->
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('nav-scrolled');
+                navbar.classList.remove('bg-transparent', 'text-white');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+                navbar.classList.add('bg-transparent', 'text-white');
+            }
+        });
+
+        // Mobile menu toggle
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Fade in on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize hero animations on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.hero-overlay + div .fade-in-up').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('visible');
+                    }, index * 200);
+                });
+            }, 300);
+        });
+    </script>
 </body>
 </html>
